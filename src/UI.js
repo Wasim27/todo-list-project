@@ -6,10 +6,8 @@ let userProjects = new Todo();
 let inbox = new Project("Inbox");
 userProjects.addProject(inbox);
 
-const inboxTodo = new Task("abc", "hello", true, "something");
-inbox.addTodo(inboxTodo);
-
 let menuOpen = false;
+let todoOpen = false;
 
 function initialise() {
   const addProject = document.getElementById("sidebar-add-project");
@@ -42,13 +40,52 @@ function initialise() {
   const allTodos = document.querySelectorAll(".todo-list");
   allTodos.forEach((todo) => {
     todo.addEventListener("click", (e) => {
-      console.log(e.target.title);
-      // Here add a function to click on a todo which brings up all the details:
-      // title, description, due date in a nice format
+      try {
+        const curHeader = document.getElementById("section-heading").innerText;
+        const curProj = userProjects.getProject(curHeader);
+
+        if (todoOpen === true) {
+          todoOpen = false;
+          refreshTasks(curProj);
+          return;
+        }
+
+        displayTodo(e);
+        todoOpen = true;
+      } catch (TypeError) {
+        return;
+      }
     });
   });
 
   updateProjectSidebar();
+}
+
+function displayTodo(e) {
+  const curHeader = document.getElementById("section-heading").innerText;
+  const curProj = userProjects.getProject(curHeader);
+
+  const todoDetails = curProj.getTodo(e.target.title);
+  const todoRef = e.target;
+
+  const displayTodoDiv = document.createElement("div");
+
+  let todoTitle = document.createElement("p");
+  let todoDesc = document.createElement("p");
+  let todoPriority = document.createElement("p");
+  let todoDue = document.createElement("p");
+
+  todoTitle.textContent = `Title: ${todoDetails.title}`;
+  todoDesc.textContent = `Description: ${todoDetails.desc}`;
+  todoPriority.textContent = `Priority: ${todoDetails.priority}`;
+  todoDue.textContent = `Due Date: ${todoDetails.dueDate}`;
+
+  displayTodoDiv.appendChild(todoTitle);
+  displayTodoDiv.appendChild(todoDesc);
+  displayTodoDiv.appendChild(todoPriority);
+  displayTodoDiv.appendChild(todoDue);
+
+  todoRef.appendChild(displayTodoDiv);
 }
 
 function openResponsiveMenu() {
