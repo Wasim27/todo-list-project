@@ -1,6 +1,6 @@
 export default class Todo {
   constructor() {
-      this.projects = []
+    this.projects = [];
   }
 
   getProjects() {
@@ -12,6 +12,10 @@ export default class Todo {
   }
 
   getProject(projectTitle) {
-    return this.projects.find((project) => project.title === projectTitle)
+    return this.projects.find((project) => project.title === projectTitle);
+  }
+
+  removeProject(projIndex) {
+    this.projects.splice(projIndex, 1);
   }
 }

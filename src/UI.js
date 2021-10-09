@@ -142,12 +142,31 @@ function updateProjectSidebar() {
   projectSidebar.innerHTML = "";
   let userProjectsList = userProjects.getProjects();
 
-  userProjectsList.forEach((name) => {
+  userProjectsList.forEach((name, i) => {
+    const projectDiv = document.createElement("div");
+
     const newProjectButton = document.createElement("button");
     newProjectButton.innerText = name.title;
     newProjectButton.title = name.title;
     newProjectButton.classList.add("user-projects");
-    projectSidebar.appendChild(newProjectButton);
+
+    let deleteProjBtn = document.createElement("button");
+    deleteProjBtn.setAttribute("data-project-number", i);
+    deleteProjBtn.id = "delete-proj";
+
+    deleteProjBtn.addEventListener("click", (e) => {
+      userProjects.removeProject(e.target.getAttribute("data-project-number"));
+      updateProjectSidebar();
+      const defaultInbox = document.querySelector('[title="Inbox"]');
+      defaultInbox.click();
+    });
+
+    projectDiv.appendChild(newProjectButton);
+    if (name.title !== "Inbox") {
+      projectDiv.appendChild(deleteProjBtn);
+    }
+
+    projectSidebar.appendChild(projectDiv);
   });
   loadProjectTasks();
 }
@@ -161,6 +180,7 @@ function loadProjectTasks() {
     project.addEventListener("click", (e) => {
       projectTodoList.innerHTML = "";
       sectionHeading.textContent = e.target.title;
+
       let curProj = userProjects.getProject(e.target.title);
       refreshTasks(curProj);
     });
@@ -170,13 +190,24 @@ function loadProjectTasks() {
 function refreshTasks(curProj) {
   const projectTodoList = document.getElementById("todo-list");
   projectTodoList.innerHTML = "";
-
   const loadTasks = curProj.todos;
-  loadTasks.forEach((task) => {
+
+  loadTasks.forEach((task, i) => {
     const todoDiv = document.createElement("div");
     todoDiv.innerHTML = task.title;
     todoDiv.title = task.title;
     todoDiv.id = "todo";
+
+    let removeTodoBtn = document.createElement("button");
+    removeTodoBtn.setAttribute("data-index-number", i);
+    removeTodoBtn.id = "delete-todo";
+
+    removeTodoBtn.addEventListener("click", (e) => {
+      curProj.removeTodo(e.target.getAttribute("data-index-number"));
+      refreshTasks(curProj);
+    });
+
+    todoDiv.appendChild(removeTodoBtn);
     projectTodoList.appendChild(todoDiv);
   });
 }
