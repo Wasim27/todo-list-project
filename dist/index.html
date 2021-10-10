@@ -1,69 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do-List</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="main.js" defer></script>
-</head>
-<body>
-  <header class="header-container">
-    <div class="header-wrapper">
-      <img src="images/todo-logo-removebg-preview.png" id="header-logo" alt="logo image">
-      <div class="menu-icon" id="menu-icon">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-  </header>
-
-  <main class="main-container" id="main-container">
-    <div class="sidebar-container" id="sidebar-container">
-      <div class="sidebar-content">
-        <div class="sidebar-projects">
-          <p>Projects</p>
-          <button id="sidebar-add-project">+</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do-List</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header class="header-container">
+      <div class="header-wrapper">
+        <img
+          src="images/todo-logo-removebg-preview.png"
+          id="header-logo"
+          alt="logo image"
+        />
+        <div class="menu-icon" id="menu-icon">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
         </div>
       </div>
-      <hr>
-      <div class="project-list" id="project-list">
+    </header>
 
-      </div>
-      <form class="add-new-project" id="add-new-project">
-        <input type="text" id="title" name="title" placeholder="Project Name" required>
-        <input type="submit" id="add-proj-submit" value="Submit">
-        <input type="button" id="cancel-add-proj" value="Cancel">
-      </form>
-    </div>
-
-
-    <div class="main-content" id="main-content">
-      <h1 id="section-heading">Inbox</h1>
-      <div class="todo-list" id="todo-list">
-      </div>
-      <div class="add-todo" id="add-todo-div"> 
-        <span id="add-todo"><button>+</button>Add Task</span>
-      </div>
-
-      <div class="task-container" id="task-container">
-        <form class="add-new-task" id="add-new-task">
-          <input type="text" id="task-title" name="task-title" placeholder="Title" required>
-          <textarea name="task-desc" id="task-desc" cols="43" rows="6" required></textarea>
-          <input type="date" id="task-due" name="task-due" required>
-          <label>Important:</label>
-          <input type="checkbox" id="task-priority" name="task-priority">
-          <input type="submit" id="submit-task" value="Submit" required>
-          <input type="button" id="cancel-task" value="Cancel" required>
+    <main class="main-container" id="main-container">
+      <div class="sidebar-container" id="sidebar-container">
+        <div class="sidebar-content">
+          <div class="sidebar-projects">
+            <p>Projects</p>
+            <button id="sidebar-add-project">+</button>
+          </div>
+        </div>
+        <hr />
+        <div class="project-list" id="project-list"></div>
+        <form class="add-new-project" id="add-new-project">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Project Name"
+            required
+          />
+          <input type="submit" id="add-proj-submit" value="Submit" />
+          <input type="button" id="cancel-add-proj" value="Cancel" />
         </form>
       </div>
-    </div data-index-number="10001001">
-  </main>
-  <footer>
-    Made with <span>&#9829;</span> by <a href="https://github.com/Wasim27" target="_blank">Wasim</a>
-  </footer>
 
-</body>
+      <div class="main-content" id="main-content">
+        <h1 id="section-heading">Inbox</h1>
+        <div class="todo-list" id="todo-list"></div>
+        <div class="add-todo" id="add-todo-div">
+          <span id="add-todo"><button>+</button>Add Task</span>
+        </div>
+
+        <div class="task-container" id="task-container">
+          <form class="add-new-task" id="add-new-task">
+            <input
+              type="text"
+              id="task-title"
+              name="task-title"
+              placeholder="Title"
+              required
+            />
+            <textarea
+              name="task-desc"
+              id="task-desc"
+              cols="43"
+              rows="6"
+              required
+            ></textarea>
+            <input type="date" id="task-due" name="task-due" required />
+            <label>Important:</label>
+            <input type="checkbox" id="task-priority" name="task-priority" />
+            <input type="submit" id="submit-task" value="Submit" required />
+            <input type="button" id="cancel-task" value="Cancel" required />
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>
+      Made with <span>&#9829;</span> by
+      <a href="https://github.com/Wasim27" target="_blank">Wasim</a>
+    </footer>
+  </body>
 </html>
