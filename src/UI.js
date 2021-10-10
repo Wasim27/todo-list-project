@@ -91,17 +91,17 @@ function displayTodo(e) {
 function openResponsiveMenu() {
   const sidebarContainer = document.getElementById("sidebar-container");
   const mainContainer = document.getElementById("main-content");
-  const todoList = document.getElementById("todo-list")
+  const todoList = document.getElementById("todo-list");
 
   if (menuOpen === false) {
     sidebarContainer.classList.add("menu-active");
     mainContainer.style.visibility = "hidden";
-    todoList.style.visibility = "hidden"
+    todoList.style.visibility = "hidden";
     menuOpen = true;
   } else {
     sidebarContainer.classList.remove("menu-active");
     mainContainer.style.visibility = "visible";
-    todoList.style.visibility = "visible"
+    todoList.style.visibility = "visible";
     menuOpen = false;
   }
 }
